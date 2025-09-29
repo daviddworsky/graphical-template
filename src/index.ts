@@ -1,14 +1,19 @@
-import { Hono } from 'hono'
+import express from 'express'
 
-const app = new Hono()
+const app = express()
+const port = 3001
 
-app.get('/', (c) => {
-  return c.text('Hello Hono with TypeScript!')
+app.get('/', (req, res) => {
+  res.send('Hello Express with TypeScript!')
 })
 
-app.get('/api/greeting/:name', (c) => {
-  const name = c.req.param('name')
-  return c.text(`Hello, ${name}!`)
+app.get('/api/greeting/:name', (req, res) => {
+  const name = req.params.name
+  res.send(`Hello, ${name}!`)
+})
+
+app.listen(port, () => {
+  console.log(`Server is running on http://localhost:${port}`)
 })
 
 export default app
