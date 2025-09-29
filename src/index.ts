@@ -1,11 +1,15 @@
-import express from 'express'
+import express, { Express } from 'express'
 import { workflow } from './workflow'
 
-const app = express()
+const app: Express = express()
 const port = 3001
 
 // Middleware to parse JSON bodies
 app.use(express.json())
+
+app.get('/', (req, res) => {
+  res.send('Your graphical workflow is running!')
+})
 
 // Health check endpoint
 app.get('/health', (req, res) => {
